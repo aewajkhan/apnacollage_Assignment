@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://apnacollage-assignment.onrender.com"
+  baseURL: "https://apnacollage-assignment.onrender.com/api"
 });
 
 export const checkBackend = () => api.get("/api/health");
