@@ -8,9 +8,7 @@ export default function Profile() {
   return (
     <div className="p-8">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow p-6">
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          User Profile
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">User Profile</h2>
 
         <div className="space-y-4">
           <div>

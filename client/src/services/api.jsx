@@ -1,20 +1,24 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://apnacollage-assignment.onrender.com/api"
+  baseURL: "https://apnacollage-assignment.onrender.com/api",
 });
+
+// const api= axios.create({
+//   baseURL: "http://localhost:5000/api"
+// });
 
 export const checkBackend = () => api.get("/api/health");
 
-api.interceptors.request.use(config => {
+api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
 api.interceptors.response.use(
-  res => res,
-  err => {
+  (res) => res,
+  (err) => {
     if (err.response?.status === 401) {
       localStorage.removeItem("token");
       window.location.href = "/login";
@@ -22,6 +26,5 @@ api.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-
 
 export default api;

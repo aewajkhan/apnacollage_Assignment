@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,10 +15,11 @@ export default function Login() {
     try {
       const res = await api.post("/auth/login", { email, password });
       login(res.data);
+      toast.success("Login successful!");
       navigate("/dashboard");
     } catch (error) {
-        console.log(error);
-      alert("Invalid credentials");
+      console.log(error);
+      toast.error("Invalid credentials");
     }
   };
 

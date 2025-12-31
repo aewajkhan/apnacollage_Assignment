@@ -1,11 +1,10 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   const login = (data) => {
     localStorage.setItem("token", data.token);
@@ -16,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    toast.info("Logged out successfully");
     setUser(null);
   };
 
@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-/* ✅ THIS EXPORT WAS MISSING OR WRONG */
 export const useAuth = () => {
   return useContext(AuthContext);
 };

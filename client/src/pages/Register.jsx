@@ -30,7 +30,7 @@ export default function Register() {
       await api.post("/auth/register", formData);
       navigate("/login");
     } catch (err) {
-        console.log(err);
+      console.log(err);
       setError("Registration failed. Try again.");
     } finally {
       setLoading(false);
@@ -40,9 +40,7 @@ export default function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-xl shadow p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Create Account
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Create Account</h2>
 
         {error && (
           <p className="bg-red-100 text-red-600 p-2 rounded mb-4 text-sm">

@@ -8,9 +8,9 @@ const topicSchema = new mongoose.Schema({
       leetcode: String,
       youtube: String,
       article: String,
-      level: String
-    }
-  ]
+      level: String,
+    },
+  ],
 });
 
 export default mongoose.model("Topic", topicSchema);

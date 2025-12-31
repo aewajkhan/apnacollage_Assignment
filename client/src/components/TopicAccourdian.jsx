@@ -8,17 +8,14 @@ export default function TopicAccordion({
   onToggle,
   onProgressUpdate,
 }) {
-  // ✅ Completed indexes from backend
   const completed = progress?.completedSubtopics || [];
 
-  // ✅ Toggle checkbox → save to backend
   const handleCheckbox = async (index) => {
     const res = await api.post("/progress/toggle", {
       topicId: topic._id,
       subtopicIndex: index,
     });
 
-    // ✅ Update parent progress state
     onProgressUpdate((prev) =>
       prev.some((p) => p.topicId === topic._id)
         ? prev.map((p) => (p.topicId === topic._id ? res.data : p))
@@ -26,7 +23,6 @@ export default function TopicAccordion({
     );
   };
 
-  // ✅ Topic completion status
   const isTopicCompleted =
     completed.length === topic.subtopics.length && topic.subtopics.length > 0;
 
@@ -57,10 +53,8 @@ export default function TopicAccordion({
         <div className="bg-white p-4">
           <h3 className="font-semibold mb-3">Sub Topics</h3>
 
-          {/* i want to make one row white and next row gray */}
           <div className="overflow-x-auto rounded-lg shadow-md border">
             <table className="w-full text-sm text-gray-700 border-collapse">
-              {/* TABLE HEADER */}
               <thead className="bg-gray-200 text-gray-800 uppercase text-xs">
                 <tr>
                   <th className="px-4 py-3 text-left">Name</th>
@@ -72,7 +66,6 @@ export default function TopicAccordion({
                 </tr>
               </thead>
 
-              {/* TABLE BODY */}
               <tbody>
                 {topic.subtopics.map((sub, i) => {
                   const isCompleted = completed.includes(i);
